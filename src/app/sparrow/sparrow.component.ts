@@ -40,7 +40,7 @@ export class SparrowComponent implements OnInit {
   onSelect(sparrow: Sparrow): void {
   	this.selectedSparrow = sparrow;
 
-    var audio = document.getElementById(sparrow.name);
+    var audio = (<HTMLAudioElement>document.getElementById(sparrow.name));
     audio.load();
     console.log(audio);
   }
@@ -48,8 +48,8 @@ export class SparrowComponent implements OnInit {
   onMouseover(sparrow: Sparrow): void {
   	this.highlightedSparrow = sparrow;
 
-    var audio = document.getElementById(sparrow.name);
-    var source = document.getElementById(sparrow.name + '-audio');
+    var audio = (<HTMLAudioElement>document.getElementById(sparrow.name));
+    var source = (<HTMLAudioElement>document.getElementById(sparrow.name + '-audio'));
 
     if (!sparrow.hasBeenHeard && source.src != ''){
         audio.load();
@@ -64,8 +64,8 @@ export class SparrowComponent implements OnInit {
   onMouseLeave(sparrow: Sparrow): void {
   	this.highlightedSparrow = null;
 
-    var audio = document.getElementById(sparrow.name);
-    var source = document.getElementById(sparrow.name + '-audio');
+    var audio = (<HTMLAudioElement>document.getElementById(sparrow.name));
+    var source = (<HTMLAudioElement>document.getElementById(sparrow.name + '-audio'));
     if (source.src != ''){
         audio.pause();
     }
