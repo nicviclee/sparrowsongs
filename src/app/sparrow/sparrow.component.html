@@ -16,8 +16,8 @@
                     <div>
     				   <audio id="{{sparrow.name}}" controls>
                         <!--<source src= "https://www.xeno-canto.org/sounds/uploaded/WOKAPEXFUA/XC421834-2018-06-16%20-%20British%20Columbia%20-%20Fort%20St%20John%20-%20MIXPRE-131%20-%20Fox%20Sparrow%20-%20Boundary%20Lake.mp3" type="audio/mpeg"/>-->
-      					    <source src= '{{sparrow.audioRedirect | async}}' type="audio/mpeg"/>
-                            <!--<source src="{{sparrow.audioRedirect | async}}" type="audio/mpeg"/>-->
+      					    <!--<source src= '{{getAudioRedirect(sparrow) | async}}' type="audio/mpeg"/>-->
+                            <source id="{{sparrow.name}}-audio" src="{{sparrow.audioRedirect | async}}" type="audio/mpeg"/>
     				   </audio>
                    </div>
     			</div>

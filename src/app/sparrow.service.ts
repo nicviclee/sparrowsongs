@@ -57,7 +57,9 @@ export class SparrowService {
                 //console.log(res.json().recordings);
 
                 var mapped = res.json().recordings.map(item => {
-                    let audioRedirect = this.getAudioRedirect('https:' + item.file);
+                    // let audioRedirect;
+                    // this.getAudioRedirect('https:' + item.file)
+                    //     .subscribe(data => console.log("redirect: " + data));
 
                     return new Sparrow(
                         item.en,
@@ -65,16 +67,18 @@ export class SparrowService {
                         item.sp,
                         item.file,
                         '',
-                        'assets/generic-sparrow.png'
+                        'assets/generic-sparrow.png',
+                        false
                     )});
 
                 let uniqueSparrows = [];
                 return mapped.filter(item => {
                     if (uniqueSparrows.indexOf(item.name) == -1){
                         uniqueSparrows.push(item.name);
+                        // return item;
+                        item.audioRedirect = this.getAudioRedirect('https:' + item.audioFile);
                         return item;
-                    }
-                });
+                    }});
             },
             msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
         );

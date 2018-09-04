@@ -31,40 +31,43 @@ export class SparrowComponent implements OnInit {
 
   getSparrows() : void {
       this.sparrows = this.sparrowService.getSparrows();
-        // .subscribe(data =>
-        //     console.log(data);
-        //     this.sparrows = data;
-        //
-            // for (var i = 0; i < this.sparrows.length(); i++){
-            //     this.sparrows[i].audioRedirect = getAudioRedirect(this.sparrows[i]);
-            // }
-        // );
-        // this.sparrowService.getAudioFile('https://www.xeno-canto.org/194110/download')
-        // .subscribe(data => console.log(data));
   }
 
   getAudioRedirect(sparrow: Sparrow) : Observable<string> {
       return this.sparrowService.getAudioRedirect(sparrow.audioFile);
-      // foreach(var sparrow in sparrows){
-      //     sparrow.audioRedirect = this.sparrowService.getAudioFile('https://www.xeno-canto.org/194110/download')
-      //     .subscribe(data => console.log(data));
-      // }
   }
 
   onSelect(sparrow: Sparrow): void {
   	this.selectedSparrow = sparrow;
+
+    var audio = document.getElementById(sparrow.name);
+    audio.load();
+    console.log(audio);
   }
 
   onMouseover(sparrow: Sparrow): void {
   	this.highlightedSparrow = sparrow;
-    //var audio = document.getElementById(sparrow.name);
-    //audio.src = sparrow.audioRedirect;
-    //audio.play();
+
+    var audio = document.getElementById(sparrow.name);
+    var source = document.getElementById(sparrow.name + '-audio');
+
+    if (!sparrow.hasBeenHeard && source.src != ''){
+        audio.load();
+        sparrow.hasBeenHeard = true;
+    }
+
+    if (source.src != ''){
+        audio.play();
+    }
   }
 
   onMouseLeave(sparrow: Sparrow): void {
   	this.highlightedSparrow = null;
-    // var audio = document.getElementById(sparrow.name);
-    // audio.pause();
+
+    var audio = document.getElementById(sparrow.name);
+    var source = document.getElementById(sparrow.name + '-audio');
+    if (source.src != ''){
+        audio.pause();
+    }
   }
 }
