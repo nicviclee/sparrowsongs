@@ -1,0 +1,28 @@
+<ul>
+  <li *ngFor="let sparrow of sparrows | async"
+    [class.selected]="sparrow == selectedSparrow"
+    (click)="onSelect(sparrow)"
+    (mouseover)="onMouseover(sparrow)"
+    (mouseleave)="onMouseLeave(sparrow)">
+    <div class="square">
+    	<!--[ngStyle]="{'background-image': 'url(' + sparrow.image + ')'}">-->
+    	<div class="content">
+    		<div class="table">
+    			<div class="table-cell">
+    				<!--<h1>{{sparrow.name | lowercase}}</h1>-->
+                    <p>{{sparrow.name}}, {{sparrow.genus}} {{sparrow.species}}</p>
+                    <!--<p>{{sparrow.audioFile}}</p>-->
+                    <p>{{sparrow.audioRedirect | async}}</p>
+                    <div>
+    				   <audio id="{{sparrow.name}}" controls>
+                        <!--<source src= "https://www.xeno-canto.org/sounds/uploaded/WOKAPEXFUA/XC421834-2018-06-16%20-%20British%20Columbia%20-%20Fort%20St%20John%20-%20MIXPRE-131%20-%20Fox%20Sparrow%20-%20Boundary%20Lake.mp3" type="audio/mpeg"/>-->
+      					    <source src= '{{sparrow.audioRedirect | async}}' type="audio/mpeg"/>
+                            <!--<source src="{{sparrow.audioRedirect | async}}" type="audio/mpeg"/>-->
+    				   </audio>
+                   </div>
+    			</div>
+    		</div>
+		</div>
+	</div>
+  </li>
+</ul>

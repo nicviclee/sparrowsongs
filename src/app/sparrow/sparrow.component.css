@@ -1,0 +1,49 @@
+ul {
+	list-style-type: none;
+}
+
+.selected {
+	background-color: #404040 !important;
+	color: white;
+	opacity: 0.5;
+}
+
+
+.square {
+	float: left;
+	position: relative;
+	width: 30%;
+	padding-bottom: 30%;
+	background-color: #bdd5fc;
+	margin: 1%;
+	overflow: hidden;
+	background-size: cover;
+}
+
+.square :hover {
+	color: white;
+	background-color: #404040;
+	opacity: 0.6;
+}
+
+.content {
+	position: absolute;
+	height: 80%;
+	width: 90%;
+	padding: 10% 5%;
+	text-align: center;
+	opacity: 1.0;
+}
+
+.table {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.table-cell {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	width: 100%;
+}
